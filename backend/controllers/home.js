@@ -28,6 +28,12 @@ exports.doctor = function(req, res) {
               });
 };
 
+exports.cases = function(req, res) {
+    res.render('cases', {
+          title: 'Doctor Flow'
+              });
+};
+
 exports.patient_ADNviewer = function(req, res) {
     res.render('patient_ADNviewer', {
           title: 'ADN Viewer'

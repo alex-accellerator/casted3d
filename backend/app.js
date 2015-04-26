@@ -12,7 +12,7 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var logger = require('morgan');
 var errorHandler = require('errorhandler');
-var lusca = require('lusca');
+// var lusca = require('lusca');
 var methodOverride = require('method-override');
 var multer  = require('multer');
 
@@ -34,6 +34,8 @@ var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
+var smsController = require('./controllers/sms');
+var emailController = require('./controllers/email');
 
 /**
  * API keys (also credentials) and Passport configuration.
@@ -87,11 +89,14 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+/*
 app.use(lusca({
   csrf: true,
   xframe: 'SAMEORIGIN',
   xssProtection: true
 }));
+*/
+
 app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
@@ -102,6 +107,8 @@ app.use(function(req, res, next) {
 });
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 
+
+
 /**
  * Primary app routes.
  */
@@ -110,9 +117,16 @@ app.get('/patient', homeController.patient);
 app.get('/intake', homeController.intake);
 app.get('/doctor', homeController.doctor);
 
+// route for sms
+app.post('/sms', smsController.sendMessage);
+
+// route for email
+app.post('/email', emailController.send);
+
 
 // route for ADNviewer
 app.get('/patient/caseID/ADNviewer', homeController.patient_ADNviewer);
+
 app.get('/api/token', function (req, res) {
     var params = {
         client_id: credentials.ClientId,
