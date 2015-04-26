@@ -56,3 +56,14 @@ head
                       });
                   .btn-group.btn-group-lg
                     a.btn.btn-info(action="submit", role='button') Submit for Doctor Review
+                    script.
+                        $(document).ready(function(){
+                          $("button").click(function(){
+                          $.get("demo_test.asp", function(data, status){
+                          alert("Data: " + data + "\\nStatus: " + status);
+                          });
+                          });
+                          });
+                        button Send an HTTP GET request to a page and get the result back
+
+
