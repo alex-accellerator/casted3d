@@ -41,17 +41,18 @@ head
             label(for='patientcase') Patient Case:
             |   
             input#patientcase.form-control(type='text', value='1234567890')
-          div
-            .form-group
-              label(for='my-select') Identify Injury Area:
-              |   
-              select#my-select.form-control
-                script.
-                  $(document).ready(function() {
-                  for(i=1;i<=73;i++)
-                  {
-                  $("#my-select").append("<option>"+i+"</option>");
-                  }
-                  });
-            .btn-group.btn-group-lg
-              a.btn.btn-info(href='/', role='button') Submit for Doctor Review
+            div
+              .form-group
+                form(action="/sms", method='post')
+                  label(for='my-select') Identify Injury Area:
+                  |   
+                  select#my-select.form-control
+                    script.
+                      $(document).ready(function() {
+                      for(i=1;i<=73;i++)
+                      {
+                      $("#my-select").append("<option>"+i+"</option>");
+                      }
+                      });
+                  .btn-group.btn-group-lg
+                    a.btn.btn-info(action="submit", role='button') Submit for Doctor Review

@@ -120,7 +120,14 @@ app.get('/patient/caseID/gallery', homeController.patient);
 
 
 // route for sms
-app.post('/sms', smsController.sendMessage);
+app.post('/sms', function(req, res) {
+  request({
+    method: "POST",
+    uri: smsController.sendMessage
+  }, function(error, response, body) {
+      res.redirect("/");
+      });
+});
 
 // route for email
 app.post('/email', emailController.send);
