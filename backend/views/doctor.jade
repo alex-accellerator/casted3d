@@ -13,7 +13,7 @@ head
     script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
   body
     .container-fluid
-      h1 Doctor Review
+      h1 DOCTOR Review
       |   
       .row
         .col-sm-6
@@ -38,19 +38,20 @@ head
         p AAAAAAAAAAAA
         p AAAAAAAAAAAA
         p AAAAAAAAAAAA
-      |     
-      .col-sm-6
-        div
-          .form-group
-            label(for='my-select') Identify Injury Area:
-            |   
-            select#my-select.form-control
-              script.
-                $(document).ready(function() {
-                for(i=1;i<=73;i++)
-                {
-                $("#my-select").append("<option>"+i+"</option>");
-                }
-                });
+        .col-sm-6
+          input(type='range', min='10', max='1000', step='10', value='300')
+          script(src='https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/1.2.0/rangeslider.min.js')
+          script.
+            // Initialize a new plugin instance for all
+            // e.g. $('input[type="range"]') elements.
+            $('input[type="range"]').rangeslider();
+            // Destroy all plugin instances created from the
+            // e.g. $('input[type="range"]') elements.
+            $('input[type="range"]').rangeslider('destroy');
+            // Update all rangeslider instances for all
+            // e.g. $('input[type="range"]') elements.
+            // Usefull if you changed some attributes e.g. `min` or `max` etc.
+            $('input[type="range"]').rangeslider('update', true);
+          |   
           .btn-group.btn-group-lg
             a.btn.btn-info(href='/doctor/cases', role='button') Send to patient for style and personalize

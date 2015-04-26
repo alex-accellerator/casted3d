@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
@@ -34,36 +35,36 @@
 <p>AAAAAAAAAAAA</p>
 <p>AAAAAAAAAAAA</p>
 
-    </div>
 
-    <div class="col-sm-6">
+<div class="col-sm-6">
 
+<input type="range" min="10" max="1000" step="10" value="300">
 
-<div>
-
-  <div class="form-group">
-  <label for="my-select">Identify Injury Area:</label>
-  <select class="form-control" id="my-select">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/1.2.0/rangeslider.min.js"></script>
 <script>
-$(document).ready(function() {   
- for(i=1;i<=73;i++)
-{
-$("#my-select").append("<option>"+i+"</option>");
-}    
-});
+    // Initialize a new plugin instance for all
+    // e.g. $('input[type="range"]') elements.
+    $('input[type="range"]').rangeslider();
+
+    // Destroy all plugin instances created from the
+    // e.g. $('input[type="range"]') elements.
+    $('input[type="range"]').rangeslider('destroy');
+
+    // Update all rangeslider instances for all
+    // e.g. $('input[type="range"]') elements.
+    // Usefull if you changed some attributes e.g. `min` or `max` etc.
+    $('input[type="range"]').rangeslider('update', true);
 </script>
-  </select>
-</div>
-<div class="btn-group btn-group-lg">
-  <a href="/doctor/cases" class="btn btn-info" role="button">Send to patient for style and personalize</a>
-</div>
 
 
-</div>
-
-    </div>
+  <div class="btn-group btn-group-lg">
+    <a href="/doctor/cases" class="btn btn-info" role="button">Send to patient for style and personalize</a>
   </div>
+
+
+
 </div>
+
 
 </body>
 </html>
