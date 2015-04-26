@@ -14,3 +14,8 @@ exports.patient = function(req, res) {
               });
 };
 
+exports.doctor = function(req, res) {
+    res.render('doctor', {
+          title: 'Doctor Flow'
+              });
+};

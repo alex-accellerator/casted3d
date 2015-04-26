@@ -5,17 +5,10 @@ var async = require('async');
 var cheerio = require('cheerio');
 var request = require('request');
 var graph = require('fbgraph');
-var LastFmNode = require('lastfm').LastFmNode;
 var tumblr = require('tumblr.js');
 var foursquare = require('node-foursquare')({ secrets: secrets.foursquare });
 var Github = require('github-api');
 var Twit = require('twit');
-var ordrin = require('ordrin-api');
-var stripe = require('stripe')(secrets.stripe.secretKey);
-var twilio = require('twilio')(secrets.twilio.sid, secrets.twilio.token);
-var Linkedin = require('node-linkedin')(secrets.linkedin.clientID, secrets.linkedin.clientSecret, secrets.linkedin.callbackURL);
-var clockwork = require('clockwork')({ key: secrets.clockwork.apiKey });
-var paypal = require('paypal-rest-sdk');
 var lob = require('lob')(secrets.lob.apiKey);
 var ig = require('instagram-node').instagram();
 var Y = require('yui/yql');
@@ -31,39 +24,6 @@ exports.getApi = function(req, res) {
   });
 };
 
-/**
- * GET /api/foursquare
- * Foursquare API example.
- */
-exports.getFoursquare = function(req, res, next) {
-  var token = _.find(req.user.tokens, { kind: 'foursquare' });
-  async.parallel({
-    trendingVenues: function(callback) {
-      foursquare.Venues.getTrending('40.7222756', '-74.0022724', { limit: 50 }, token.accessToken, function(err, results) {
-        callback(err, results);
-      });
-    },
-    venueDetail: function(callback) {
-      foursquare.Venues.getVenue('49da74aef964a5208b5e1fe3', token.accessToken, function(err, results) {
-        callback(err, results);
-      });
-    },
-    userCheckins: function(callback) {
-      foursquare.Users.getCheckins('self', null, token.accessToken, function(err, results) {
-        callback(err, results);
-      });
-    }
-  },
-  function(err, results) {
-    if (err) return next(err);
-    res.render('api/foursquare', {
-      title: 'Foursquare API',
-      trendingVenues: results.trendingVenues,
-      venueDetail: results.venueDetail,
-      userCheckins: results.userCheckins
-    });
-  });
-};
 
 /**
  * GET /api/tumblr
@@ -163,97 +123,7 @@ exports.getAviary = function(req, res) {
   });
 };
 
-/**
- * GET /api/nyt
- * New York Times API example.
- */
-exports.getNewYorkTimes = function(req, res, next) {
-  var query = querystring.stringify({ 'api-key': secrets.nyt.key, 'list-name': 'young-adult' });
-  var url = 'http://api.nytimes.com/svc/books/v2/lists?' + query;
-  request.get(url, function(err, request, body) {
-    if (err) return next(err);
-    if (request.statusCode === 403) return next(Error('Missing or Invalid New York Times API Key'));
-    var bestsellers = JSON.parse(body);
-    res.render('api/nyt', {
-      title: 'New York Times API',
-      books: bestsellers.results
-    });
-  });
-};
 
-/**
- * GET /api/lastfm
- * Last.fm API example.
- */
-exports.getLastfm = function(req, res, next) {
-  var lastfm = new LastFmNode(secrets.lastfm);
-  async.parallel({
-    artistInfo: function(done) {
-      lastfm.request('artist.getInfo', {
-        artist: 'The Pierces',
-        handlers: {
-          success: function(data) {
-            done(null, data);
-          },
-          error: function(err) {
-            done(err);
-          }
-        }
-      });
-    },
-    artistTopTracks: function(done) {
-      lastfm.request('artist.getTopTracks', {
-        artist: 'The Pierces',
-        handlers: {
-          success: function(data) {
-            var tracks = [];
-            _.each(data.toptracks.track, function(track) {
-              tracks.push(track);
-            });
-            done(null, tracks.slice(0,10));
-          },
-          error: function(err) {
-            done(err);
-          }
-        }
-      });
-    },
-    artistTopAlbums: function(done) {
-      lastfm.request('artist.getTopAlbums', {
-        artist: 'The Pierces',
-        handlers: {
-          success: function(data) {
-            var albums = [];
-            _.each(data.topalbums.album, function(album) {
-              albums.push(album.image.slice(-1)[0]['#text']);
-            });
-            done(null, albums.slice(0, 4));
-          },
-          error: function(err) {
-            done(err);
-          }
-        }
-      });
-    }
-  },
-  function(err, results) {
-    if (err) return next(err.message);
-    var artist = {
-      name: results.artistInfo.artist.name,
-      image: results.artistInfo.artist.image.slice(-1)[0]['#text'],
-      tags: results.artistInfo.artist.tags.tag,
-      bio: results.artistInfo.artist.bio.summary,
-      stats: results.artistInfo.artist.stats,
-      similar: results.artistInfo.artist.similar.artist,
-      topAlbums: results.artistTopAlbums,
-      topTracks: results.artistTopTracks
-    };
-    res.render('api/lastfm', {
-      title: 'Last.fm API',
-      artist: artist
-    });
-  });
-};
 
 /**
  * GET /api/twitter
@@ -301,50 +171,7 @@ exports.postTwitter = function(req, res, next) {
   });
 };
 
-/**
- * GET /api/steam
- * Steam API example.
- */
-exports.getSteam = function(req, res, next) {
-  var steamId = '76561197982488301';
-  var query = { l: 'english', steamid: steamId, key: secrets.steam.apiKey };
-  async.parallel({
-    playerAchievements: function(done) {
-      query.appid = '49520';
-      var qs = querystring.stringify(query);
-      request.get({ url: 'http://api.steampowered.com/ISteamUserStats/GetPlayerAchievements/v0001/?' + qs, json: true }, function(error, request, body) {
-        if (request.statusCode === 401) return done(new Error('Missing or Invalid Steam API Key'));
-        done(error, body);
-      });
-    },
-    playerSummaries: function(done) {
-      query.steamids = steamId;
-      var qs = querystring.stringify(query);
-      request.get({ url: 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?' + qs, json: true }, function(err, request, body) {
-        if (request.statusCode === 401) return done(new Error('Missing or Invalid Steam API Key'));
-        done(err, body);
-      });
-    },
-    ownedGames: function(done) {
-      query.include_appinfo = 1;
-      query.include_played_free_games = 1;
-      var qs = querystring.stringify(query);
-      request.get({ url: 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?' + qs, json: true }, function(err, request, body) {
-        if (request.statusCode === 401) return done(new Error('Missing or Invalid Steam API Key'));
-        done(err, body);
-      });
-    }
-  },
-  function(err, results) {
-    if (err) return next(err);
-    res.render('api/steam', {
-      title: 'Steam Web API',
-      ownedGames: results.ownedGames.response.games,
-      playerAchievemments: results.playerAchievements.playerstats,
-      playerSummary: results.playerSummaries.response.players[0]
-    });
-  });
-};
+
 
 /**
  * GET /api/stripe
@@ -580,25 +407,6 @@ exports.getYahoo = function(req, res) {
   });
 };
 
-/**
- * GET /api/ordrin
- * Ordr.in API example.
- */
-exports.getOrdrin = function(req, res, next) {
-  var ordrin_api = new ordrin.APIs(secrets.ordrin.secretKey);
-  ordrin_api.delivery_list({
-    datetime: 'ASAP',
-    addr: '199 Chambers St',
-    city: 'New York, NY',
-    zip: '10007'
-  }, function(err, deliveries) {
-    if (err) return next(err);
-    res.render('api/ordrin', {
-      title: 'Ordr.in API',
-      deliveries: deliveries
-    });
-  });
-};
 
 /**
  * GET /api/paypal
@@ -683,9 +491,9 @@ exports.getPayPalCancel = function(req, res) {
  */
 exports.getLob = function(req, res, next) {
   lob.routes.list({
-    zip_codes: ['10007'] 
+    zip_codes: ['10007']
   }, function(err, routes) {
-    if(err) return next(err); 
+    if(err) return next(err);
     res.render('api/lob', {
       title: 'Lob API',
       routes: routes.data[0].routes

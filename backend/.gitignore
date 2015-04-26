@@ -20,3 +20,13 @@ tmp
 node_modules
 Thumbs.db
 newrelic.js
+
+# API credentials file
+credentials.js
+
+# webstorm project files
+.idea
+credentials_.js
+
+# config secrets file
+secrets.js
