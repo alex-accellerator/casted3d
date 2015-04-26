@@ -29,7 +29,7 @@ $(document).ready(function () {
                 viewerConfig);
 
             viewer.addEventListener(
-                    Autodesk.Viewing.Extension,
+                    Autodesk.Viewing.GEOMETRY_LOADED_EVENT,
                     function(event) {
                         loadExtensions(viewer);
                 });
@@ -41,7 +41,7 @@ $(document).ready(function () {
 });
 
 function loadExtensions(viewer) {
-        viewer.loadExtension('Autodesk.ADN.Viewing.Extension');
+        viewer.loadExtension('Autodesk.ADN.Viewing.Extension.Material');
     }
 
 function onError(error) {

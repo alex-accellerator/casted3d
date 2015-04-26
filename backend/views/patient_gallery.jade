@@ -1,0 +1,33 @@
+doctype html(lang='en')
+head
+    title Patient Cast Selection
+
+    meta(charset='utf-8')
+
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
+  body
+    .container-fluid
+      .row
+        .col-sm-2.col-sm-offset-4
+          h1 Select a style:
+
+      .row
+        .col-xs-6.col-md-3.col-sm-offset-3
+          a.thumbnail(href='/patient/caseID/ADNviewer')
+            img.(src='/images/patient-3dcast.jpg', alt='Patient John Doe')
+          a.thumbnail(href='/patient/caseID/ADNviewer')
+            img.(src='/images/patient-3dcast.jpg', alt='Patient John Doe')
+          a.thumbnail(href='/patient/caseID/ADNviewer')
+            img.(src='/images/patient-3dcast.jpg', alt='Patient John Doe')
+          a.thumbnail(href='/patient/caseID/ADNviewer')
+            img.(src='/images/patient-3dcast.jpg', alt='Patient John Doe')
+
+
+      .btn-group.btn-group-lg.col-md-offset-4
+        a.btn.btn-info(href='/doctor/cases', role='button') Send to patient for style and personalize

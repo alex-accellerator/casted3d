@@ -116,6 +116,8 @@ app.get('/', homeController.index);
 app.get('/patient', homeController.patient);
 app.get('/intake', homeController.intake);
 app.get('/doctor', homeController.doctor);
+app.get('/patient/caseID/gallery', homeController.patient);
+
 
 // route for sms
 app.post('/sms', smsController.sendMessage);

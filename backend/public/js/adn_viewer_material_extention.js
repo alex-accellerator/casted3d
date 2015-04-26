@@ -36,9 +36,9 @@ Autodesk.ADN.Viewing.Extension.Material = function (viewer, options) {
 
         _material = _self.addMaterial(0xf571d6);
 
-        _texMaterials.push(_self.addTexMaterial("public/images/textures/wood.jpg"));
-        _texMaterials.push(_self.addTexMaterial("public/images/textures/steel.jpg"));
-        _texMaterials.push(_self.addTexMaterial("public/images/textures/brick.jpg"));
+        _texMaterials.push(_self.addTexMaterial("/images/textures/wood.jpg"));
+        _texMaterials.push(_self.addTexMaterial("/images/textures/steel.jpg"));
+        _texMaterials.push(_self.addTexMaterial("/images/textures/brick.jpg"));
 
         _viewer.addEventListener(
             Autodesk.Viewing.SELECTION_CHANGED_EVENT,
@@ -60,7 +60,7 @@ Autodesk.ADN.Viewing.Extension.Material = function (viewer, options) {
 
         $('<div/>').
             attr('id', 'tex1DivId').
-            append('<a href=""><img width="30" height="30" src="public/images/textures/wood.jpg"/></a>').
+            append('<a href=""><img width="30" height="30" src="/images/textures/wood.jpg"/></a>').
             appendTo('#' + _viewer.clientContainer.id);
 
         $('#tex1DivId').css({
@@ -80,7 +80,7 @@ Autodesk.ADN.Viewing.Extension.Material = function (viewer, options) {
 
         $('<div/>').
             attr('id', 'tex2DivId').
-            append('<a href=""><img width="30" height="30" src="public/images/textures/steel.jpg"/></a>').
+            append('<a href=""><img width="30" height="30" src="/images/textures/steel.jpg"/></a>').
             appendTo('#' + _viewer.clientContainer.id);
 
         $('#tex2DivId').css({
@@ -100,7 +100,7 @@ Autodesk.ADN.Viewing.Extension.Material = function (viewer, options) {
 
         $('<div/>').
             attr('id', 'tex3DivId').
-            append('<a href=""><img width="30" height="30" src="public/images/textures/brick.jpg"/></a>').
+            append('<a href=""><img width="30" height="30" src="/images/textures/brick.jpg"/></a>').
             appendTo('#' + _viewer.clientContainer.id);
 
         $('#tex3DivId').css({

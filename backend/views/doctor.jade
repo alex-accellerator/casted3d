@@ -1,51 +1,82 @@
 doctype html(lang='en')
 head
     title CASTED 3D
-    |   
+
     meta(charset='utf-8')
-    |   
+
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    |   
+
     link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
-    |   
+
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
-    |   
+
     script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
   body
     .container-fluid
       h1 DOCTOR Review
-      |   
+
       .row
-        .col-sm-6
+        .col-sm-5
           .form-group
             label(for='patientname') Patient Name:
-            |   
+
             input#patientname.form-control(type='text', value='John Doe')
-            |     
+
             label(for='patientcase') Patient Case:
-            |   
+
             input#patientcase.form-control(type='text', value='1234567890')
-          |     
+            .btn-group.btn-group-lg
+                br
+                button.btn.btn-primary(type='submit') Submit
+
           img.img-responsive(src='/images/patient-3dcast.jpg', alt='Patient John Doe', ,='', height='300', width='500', align='middle')
-        |     
-        p
-        h2 Patient History:
-        p
-        p AAAAAAAAAAAA
-        p AAAAAAAAAAAA
-        p AAAAAAAAAAAA
-        p AAAAAAAAAAAA
-        p AAAAAAAAAAAA
-        p AAAAAAAAAAAA
-        p AAAAAAAAAAAA
-        .col-sm-6
-          script(src='https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/1.2.0/rangeslider.min.js')
-          input(type='range', min='10', max='1000', step='10', value='300')
-          |         
-          div
-            input(type='range', min='10', max='11', step='0.1', value='10.2', data-rangeslider='')
-            |             
-            output
-          |   
-          .btn-group.btn-group-lg
+
+
+        .col-sm-6.col-sm-offset-1
+            h2 Patient Data:
+            h4 Fracture to forearm (area 8a-8c & 9a)
+            h4 Date of fracture: 11/23/14
+
+        br
+        .col-sm-6.col-sm-offset-1
+            form
+            h3 Confirm or Update Cast Properties
+              fieldset
+                .form-group
+                  label 8a
+                  select.form-control
+                    option 1
+                    option 2
+                    option 3
+                    option 4
+                    option 5
+                .form-group
+                  label 8b
+                  select.form-control
+                    option 1
+                    option 2
+                    option 3
+                    option 4
+                    option 5
+                .form-group
+                  label 8c
+                  select.form-control
+                    option 1
+                    option 2
+                    option 3
+                    option 4
+                    option 5
+                .form-group
+                  label 9a
+                  select.form-control
+                    option 1
+                    option 2
+                    option 3
+                    option 4
+                    option 5
+            .form-group
+                label Notes:
+                textarea.form-control(rows="3")
+
+          .btn-group.btn-group-lg.col-md-offset-4
             a.btn.btn-info(href='/doctor/cases', role='button') Send to patient for style and personalize
