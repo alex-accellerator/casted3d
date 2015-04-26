@@ -103,6 +103,8 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
  */
 app.get('/', homeController.index);
 app.get('/patient', homeController.patient);
+app.get('/intake', homeController.intake);
+app.get('/doctor', homeController.doctor);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
 app.get('/logout', userController.logout);

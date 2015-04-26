@@ -1,22 +1,55 @@
-extends layout
+doctype html(lang='en')
+head
+    title CASTED 3D
+    |   
+    meta(charset='utf-8')
+    |   
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    |   
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
+    |   
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+    |   
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
+  body
+    .container
+      .jumbotron
+        h1  CASTED 3D 
+        |     
+        img.img-responsive(src='/images/wecare.jpg', alt='We Care About You', height='300', width='500', align='middle')
+        |      
+        |     &#x9;
+        .span12
+          h2 Workflow from injury to 3D printed cast!
+      |     
+      .row
+        .col-sm-4
+          h3 PATIENT
+          |       
+          p Style and Personalize your cast
+          |       
+          p Pink is a good color...
+          
+          p
+            a.btn.btn-default(href='/patient', role='button') PATIENT »
+        |     
+        .col-sm-4
+          h3 IN-TAKE ADMIN
+          |       
+          p Measurements and 3D imaging
+          |       
+          p If it hurts, don&apos;t do it...
 
-block content
-  h1 Casted 3D
-  p.lead Design your own 3D printed cast
-  hr
-  .row
-    .col-sm-6
-      h2 PATIENT
-      p Customize your cast
-      p
-        a.btn.btn-default(href='#', role='button') PATIENT »
-    .col-sm-6
-      h2 IN-TAKE ADMIN
-      p Xray and measurements
-      p
-        a.btn.btn-default(href='#', role='button') ADMIN »
-    .col-sm-6
-      h2 DOCTOR
-      p Review and approve
-      p
-        a.btn.btn-default(href='#', role='button') DOCTOR »
+          p
+            a.btn.btn-default(href='/intake', role='button') ADMIN »
+        |     
+        .col-sm-4
+          h3 DOCTOR
+          |         
+          |       
+          p Review and approve
+          |       
+          p The best care starts here...
+
+          p
+            a.btn.btn-default(href='/doctor', role='button') DOCTOR »

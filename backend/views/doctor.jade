@@ -1,0 +1,56 @@
+doctype html(lang='en')
+head
+    title CASTED 3D
+    |   
+    meta(charset='utf-8')
+    |   
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    |   
+    link(rel='stylesheet', href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
+    |   
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js')
+    |   
+    script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
+  body
+    .container-fluid
+      h1 Doctor Review
+      |   
+      .row
+        .col-sm-6
+          .form-group
+            label(for='patientname') Patient Name:
+            |   
+            input#patientname.form-control(type='text', value='John Doe')
+            |     
+            label(for='patientcase') Patient Case:
+            |   
+            input#patientcase.form-control(type='text', value='1234567890')
+          |     
+          img.img-responsive(src='/images/patient-3dcast.jpg', alt='Patient John Doe', ,='', height='300', width='500', align='middle')
+        |     
+        p
+        h2 Patient History:
+        p
+        p AAAAAAAAAAAA
+        p AAAAAAAAAAAA
+        p AAAAAAAAAAAA
+        p AAAAAAAAAAAA
+        p AAAAAAAAAAAA
+        p AAAAAAAAAAAA
+        p AAAAAAAAAAAA
+      |     
+      .col-sm-6
+        div
+          .form-group
+            label(for='my-select') Identify Injury Area:
+            |   
+            select#my-select.form-control
+              script.
+                $(document).ready(function() {
+                for(i=1;i<=73;i++)
+                {
+                $("#my-select").append("<option>"+i+"</option>");
+                }
+                });
+          .btn-group.btn-group-lg
+            a.btn.btn-info(href='/doctor/cases', role='button') Send to patient for style and personalize

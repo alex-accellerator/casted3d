@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CASTED 3D</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <div class="jumbotron">
+    <h1> Casted 3D </h1>
+    <p>Workflow from injury to 3D printed cast!</p> 
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>PATIENT</h3>
+      <p>Style and Personalize your cast</p>
+      <p>Pink is a good color...</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>IN-TAKE ADMIN</h3>
+      <p>Measurements and 3D imaging</p>
+      <p>If it hurts, don't do it...</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>DOCTOR</h3>        
+      <p>Review and approve</p>
+      <p>The best care starts here...</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

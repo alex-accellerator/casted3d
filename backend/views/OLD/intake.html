@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CASTED 3D</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+  <h1>Intake Admin</h1>
+  <div class="row">
+    <div class="col-sm-6">
+      <h2>Follow this step after X-RAY</h2>
+      <p></p>
+
+<div class="checkbox">
+  <label><input type="checkbox" value="">Confirm Patient Name and Case Number</label>
+</div>
+      <div class="checkbox">
+  <label><input type="checkbox" value="">Create 3D scan using Camera Array</label>
+</div>
+    <img src="/images/skeleton.jpg" class="img-responsive" alt="Identify injure area", height='300', width='500', align='middle'>
+
+
+    </div>
+
+    <div class="col-sm-6">
+      <div class="form-group">
+  <label for="patientname">Patient Name:</label>
+  <input type="text" class="form-control" id="patientname" value="John Doe">
+    <label for="patientcase">Patient Case:</label>
+  <input type="text" class="form-control" id="patientcase" value="1234567890">
+</div>
+<div>
+
+  <div class="form-group">
+  <label for="my-select">Identify Injury Area:</label>
+  <select class="form-control" id="my-select">
+<script>
+$(document).ready(function() {   
+ for(i=1;i<=73;i++)
+{
+$("#my-select").append("<option>"+i+"</option>");
+}    
+});
+</script>
+  </select>
+</div>
+<div class="btn-group btn-group-lg">
+  <a href="/doctor" class="btn btn-info" role="button">Submit for Doctor Review</a>
+</div>
+
+
+</div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

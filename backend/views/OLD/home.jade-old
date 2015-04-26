@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1 Casted 3D
+  p.lead Design your own 3D printed cast
+  hr
+  .row
+    .col-sm-6
+      h2 PATIENT
+      p Customize your cast
+      p
+        a.btn.btn-default(href='#', role='button') PATIENT »
+    .col-sm-6
+      h2 IN-TAKE ADMIN
+      p Xray and measurements
+      p
+        a.btn.btn-default(href='#', role='button') ADMIN »
+    .col-sm-6
+      h2 DOCTOR
+      p Review and approve
+      p
+        a.btn.btn-default(href='#', role='button') DOCTOR »

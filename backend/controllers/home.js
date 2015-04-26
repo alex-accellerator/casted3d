@@ -14,3 +14,14 @@ exports.patient = function(req, res) {
               });
 };
 
+exports.intake = function(req, res) {
+    res.render('intake', {
+          title: 'Intake Flow'
+              });
+};
+
+exports.doctor = function(req, res) {
+    res.render('doctor', {
+          title: 'Doctor Review'
+              });
+};
