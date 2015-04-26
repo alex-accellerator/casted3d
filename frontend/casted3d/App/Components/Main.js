@@ -1,9 +1,13 @@
 var React = require('react-native');
+var api = require('../Utils/api');
 
 var {
 	View,
 	Text,
 	StyleSheet,
+	TextInput,
+	TouchableHighlight,
+	ActivityIndicatorIOS,
 } = React;
 
 var styles = StyleSheet.create({
@@ -26,8 +30,10 @@ var styles = StyleSheet.create({
 		padding: 4,
 		marginRight: 5,
 		fontSize: 23,
-		color: '#fff',
-		alignSelf: 'center'
+		borderWidth: 1,
+		borderColor: 'white',
+		borderRadius: 8,
+		color: 'white'
 	},
 	button: {
 		height: 45,
@@ -44,10 +50,59 @@ var styles = StyleSheet.create({
 });
 
 class Main extends React.Component{
+	constructor(props){
+		super(props);
+		this.state = {
+			username: '',
+			isLoading: false,
+			error: false
+		}
+	}
+	handleChange(event){
+		this.setState({
+			username: event.nativeEvent.text
+		});
+	}
+	handleSubmit(){
+		// update spinner
+		this.setState({
+			isLoading: true
+		});
+		api.getBio(this.state.username)
+			.then((res) => {
+				if(res.message === 'Not Found'){
+					this.setState({
+						error: 'User not found',
+						isLoading: false
+					})
+				} else {
+					this.props.navigator.push({
+						title: res.name || "Select an Option",
+						component: Dashboard,
+						passProps: {userInfo: res}
+					});
+					this.setState({
+						isLoading: false,
+						error: false,
+						username: ''
+					});
+				}
+			});
+	}
 	render(){
 		return(
 			<View style={styles.mainContainer}>
-				<Text> Main component route </Text>
+				<Text style={styles.title}> Main component route </Text>
+				<TextInput
+					style={styles.searchInput}
+					value={this.state.username}
+					onChange={this.handleChange.bind(this)} />
+				<TouchableHighlight
+					style={styles.button}
+					onPress={this.handleSubmit.bind(this)}
+					underlayColor="white">
+						<Text style={styles.buttonText}> SEARCH </Text>
+				</TouchableHighlight>
 			</View>
 		)
 	}
