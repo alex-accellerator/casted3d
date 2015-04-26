@@ -40,7 +40,7 @@ exports.patient_ADNviewer = function(req, res) {
               });
 };
 
-exports.patient_gallery = function(req, res) {
+exports.patient = function(req, res) {
     res.render('patient_gallery', {
           title: 'Patient Cast Selection'
               });
