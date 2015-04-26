@@ -2,6 +2,8 @@
  * GET /
  * Home page.
  */
+
+
 exports.index = function(req, res) {
   res.render('home', {
     title: 'Home'
@@ -17,5 +19,11 @@ exports.patient = function(req, res) {
 exports.doctor = function(req, res) {
     res.render('doctor', {
           title: 'Doctor Flow'
+              });
+};
+
+exports.patient_ADNviewer = function(req, res) {
+    res.render('patient_ADNviewer', {
+          title: 'ADN Viewer'
               });
 };

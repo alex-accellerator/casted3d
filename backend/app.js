@@ -1,6 +1,9 @@
 /**
  * Module dependencies.
  */
+var credentials = require('./credentials');
+var request = require('request');
+
 
 var express = require('express');
 var cookieParser = require('cookie-parser');
@@ -37,7 +40,6 @@ var contactController = require('./controllers/contact');
  */
 var secrets = require('./config/secrets');
 var passportConf = require('./config/passport');
-var credentials = require('../credentials');
 
 
 /**
@@ -107,6 +109,25 @@ app.get('/', homeController.index);
 app.get('/patient', homeController.patient);
 app.get('/doctor', homeController.doctor);
 
+// route for ADNviewer
+app.get('/patient/caseID/ADNviewer', homeController.patient_ADNviewer);
+app.get('/api/token', function (req, res) {
+    var params = {
+        client_id: credentials.ClientId,
+        client_secret: credentials.ClientSecret,
+        grant_type: 'client_credentials'
+    }
+
+    request.post(
+        credentials.BaseUrl + '/authentication/v1/authenticate',
+        { form: params },
+
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                res.send(body);
+            }
+        });
+});
 
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
@@ -135,7 +156,7 @@ app.get('/api/twitter', passportConf.isAuthenticated, passportConf.isAuthorized,
 app.post('/api/twitter', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.postTwitter);
 app.get('/api/instagram', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getInstagram);
 app.get('/api/yahoo', apiController.getYahoo);
-app.get('/api/ordrin', apiController.getOrdrin);
+//app.get('/api/ordrin', apiController.getOrdrin);
 app.get('/api/paypal', apiController.getPayPal);
 app.get('/api/paypal/success', apiController.getPayPalSuccess);
 app.get('/api/paypal/cancel', apiController.getPayPalCancel);
