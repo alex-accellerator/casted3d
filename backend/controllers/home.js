@@ -41,7 +41,7 @@ exports.patient_ADNviewer = function(req, res) {
 };
 
 exports.patient = function(req, res) {
-    res.render('patient_gallery', {
+    res.render('patient_ADNviewer', {
           title: 'Patient Cast Selection'
               });
 };
