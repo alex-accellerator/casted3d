@@ -1,0 +1,100 @@
+doctype html(lang='en')
+head
+    meta(charset='utf-8')
+    |     
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    |     
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags
+    meta(name='description', content='')
+    |     
+    meta(name='author', content='')
+    |     
+    link(rel='icon', href='/images/favicon.ico')
+    |     
+    title Carousel Template for Bootstrap
+    // Bootstrap core CSS
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
+    // Just for debugging purposes. Don't actually copy these 2 lines!
+    //if lt IE 9
+      script(src='../../assets/js/ie8-responsive-file-warning.js')
+    // <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    // HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+    //if lt IE 9
+      script(src='https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js')
+      |       
+      script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+    // Custom styles for this template
+    link(href='carousel.css', rel='stylesheet')
+  body
+    //
+      Carousel
+      ==================================================
+    #myCarousel.carousel.slide(data-ride='carousel')
+      // Indicators
+      ol.carousel-indicators
+        li.active(data-target='#myCarousel', data-slide-to='0')
+        |         
+        li(data-target='#myCarousel', data-slide-to='1')
+        |         
+        li(data-target='#myCarousel', data-slide-to='2')
+      |       
+      .carousel-inner(role='listbox')
+        .item.active
+          img.first-slide(src='/images/pic01.jpg', alt='First slide')
+          |           
+          .container
+            .carousel-caption
+              h1 3D printed cast selections
+              |               
+              p
+                | Note: Contact your In-Take Admin for measurements
+              |               
+              p
+                a.btn.btn-lg.btn-primary(href='#', role='button') Sign up today
+        |         
+        .item
+          img.second-slide(src='/images/pic02.jpg', alt='Second slide')
+          |           
+          .container
+            .carousel-caption
+              h1 Another example headline.
+              |               
+              p
+                | Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+              |               
+              p
+                a.btn.btn-lg.btn-primary(href='#', role='button') Learn more
+        |         
+        .item
+          img.third-slide(src='/images/pic03.jpg', alt='Third slide')
+          |           
+          .container
+            .carousel-caption
+              h1 One more for good measure.
+              |               
+              p
+                | Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+              |               
+              p
+                a.btn.btn-lg.btn-primary(href='#', role='button') Browse gallery
+      |       
+      a.left.carousel-control(href='#myCarousel', role='button', data-slide='prev')
+        span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+        |         
+        span.sr-only Previous
+      |       
+      a.right.carousel-control(href='#myCarousel', role='button', data-slide='next')
+        span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+        |         
+        span.sr-only Next
+    // /.carousel
+    //
+      Bootstrap core JavaScript
+      ==================================================
+    // Placed at the end of the document so the pages load faster
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js')
+      </body>
+      </html>
+

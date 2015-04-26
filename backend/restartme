@@ -1,0 +1,16 @@
+
+
+export IOJS="/home/www/.nvm/versions/io.js/v1.8.1/bin"
+export PATH="$IOJS:$PATH"
+
+PWD=`pwd`
+PID=`ps -ef | grep node | grep "$PWD" | awk '{print $2, $3}'`
+
+for pid in $PID; do kill $pid;done
+
+#cp content/data/*db tmp/
+#cp content/data/*openssl src/
+#npm install
+#nodemon $PWD/app.js 2>&1 > ./logs/casted3d.log &
+#NODE_ENV=development forever start $PWD/app.js
+NODE_ENV=production nodemon $PWD/app.js 2>&1 > ./logs/casted3d.log &

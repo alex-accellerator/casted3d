@@ -1,0 +1,5 @@
+
+npm install
+#nodemon $PWD/app.js 2>&1 > ./logs/casted3d.log &
+#NODE_ENV=development forever start $PWD/app.js
+NODE_ENV=production nodemon $PWD/app.js 2>&1 > ./logs/casted3d.log &
